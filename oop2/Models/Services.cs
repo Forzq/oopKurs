@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
-        public ICollection<EquipmentServices> EquipmentServices { get;} = new List<EquipmentServices>();
+        public List<EquipmentServices> EquipmentServices { get; } = [];
+        public List<Equipment> Equipment { get; } = [];
     }
 }

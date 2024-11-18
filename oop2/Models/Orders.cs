@@ -7,12 +7,12 @@ namespace oop2.Models
         public int Id { get; set; }
         
         public int ClientsId { get; set; }
+        public Clients Clients { get; set; } = null!;
         public int ServicesId { get; set; }
         public Services Services { get; set; } = null!;
-        public Clients Clients { get; set; } = null!;
-        public Masters Masters { get; set; } = null!;
         public int MasterId { get; set; }
-        public int TypeOfEquipmentId { get; set; }
-        public TypeOfEquipment TypeOfEquipment { get; set; } = null!; 
+        public Masters Masters { get; set; } = null!;
+        public int EquipmentId { get; set; }
+        public Equipment Equipment { get; set; } = null!;
     }
 }
