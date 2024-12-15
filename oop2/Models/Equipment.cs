@@ -4,10 +4,10 @@
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public ICollection<Orders> Orders { get;} = new List<Orders>();
-        public List<EquipmentServices> EquipmentServices { get; } = [];
-        public List<Services> Services { get; } = [];
-
-        
+        public string Name { get; set; }
+        public int OrderId { get; set; }
+        public Order Order { get; set; } = null!;
+        public List<EquipmentService> EquipmentService { get; set; } = new List<EquipmentService>();
     }
+
 }

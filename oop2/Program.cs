@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using oop2.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connectionString = builder.Configuration.GetConnectionString("LearninhAppDBConnection");
+builder.Services.AddDbContextPool<RepositoryContext>(
+    options => options.UseMySql(connectionString,
+    ServerVersion.AutoDetect(connectionString)));
 
 var app = builder.Build();
 
