@@ -14,10 +14,13 @@ builder.Services.AddDbContextPool<RepositoryContext>(
     
     builder.Services.AddScoped<IClientRepository, ClientRepository>();
     builder.Services.AddScoped<IEquipmentRepository, EquipmentRepository>();
-    //builder.Services.AddScoped<IEquipmentServiceRepository, EquipmentServiceRepository>(); 
+    builder.Services.AddScoped<IEquipmentServiceRepository, EquipmentServiceRepository>();
     builder.Services.AddScoped<IMasterRepository, MasterRepository>();
     builder.Services.AddScoped<IOrderRepository, OrderRepository>();
     builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+    builder.Services.AddAutoMapper(typeof(Program));
+
+
 
 var app = builder.Build();
 
