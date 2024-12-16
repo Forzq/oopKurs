@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using oop2.Contracts;
 using oop2.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,13 @@ var connectionString = builder.Configuration.GetConnectionString("LearninhAppDBC
 builder.Services.AddDbContextPool<RepositoryContext>(
     options => options.UseMySql(connectionString,
     ServerVersion.AutoDetect(connectionString)));
+    
+    builder.Services.AddScoped<IClientRepository, ClientRepository>();
+    builder.Services.AddScoped<IEquipmentRepository, EquipmentRepository>();
+    //builder.Services.AddScoped<IEquipmentServiceRepository, EquipmentServiceRepository>(); 
+    builder.Services.AddScoped<IMasterRepository, MasterRepository>();
+    builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+    builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 
 var app = builder.Build();
 
@@ -23,13 +31,10 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.MapControllers();
 
-app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
