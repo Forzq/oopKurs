@@ -75,7 +75,6 @@ namespace oop2.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ClientId = table.Column<int>(type: "int", nullable: false),
-                    ServiceId = table.Column<int>(type: "int", nullable: false),
                     MasterId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
@@ -93,12 +92,6 @@ namespace oop2.Migrations
                         name: "FK_Order_Master_MasterId",
                         column: x => x.MasterId,
                         principalTable: "Master",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Order_Service_ServiceId",
-                        column: x => x.ServiceId,
-                        principalTable: "Service",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -192,14 +185,14 @@ namespace oop2.Migrations
 
             migrationBuilder.InsertData(
                 table: "Order",
-                columns: new[] { "Id", "ClientId", "MasterId", "ServiceId", "Status" },
+                columns: new[] { "Id", "ClientId", "MasterId", "Status" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, 1, "Выполнен" },
-                    { 2, 2, 2, 1, "Выполнен" },
-                    { 3, 3, 3, 1, "В процессе" },
-                    { 4, 4, 4, 1, "Отменен" },
-                    { 5, 5, 5, 1, "Выполнен" }
+                    { 1, 1, 1, "Выполнен" },
+                    { 2, 2, 2, "Выполнен" },
+                    { 3, 3, 3, "В процессе" },
+                    { 4, 4, 4, "Отменен" },
+                    { 5, 5, 5, "Выполнен" }
                 });
 
             migrationBuilder.InsertData(
@@ -244,11 +237,6 @@ namespace oop2.Migrations
                 name: "IX_Order_MasterId",
                 table: "Order",
                 column: "MasterId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Order_ServiceId",
-                table: "Order",
-                column: "ServiceId");
         }
 
         /// <inheritdoc />
@@ -261,6 +249,9 @@ namespace oop2.Migrations
                 name: "Equipment");
 
             migrationBuilder.DropTable(
+                name: "Service");
+
+            migrationBuilder.DropTable(
                 name: "Order");
 
             migrationBuilder.DropTable(
@@ -268,9 +259,6 @@ namespace oop2.Migrations
 
             migrationBuilder.DropTable(
                 name: "Master");
-
-            migrationBuilder.DropTable(
-                name: "Service");
         }
     }
 }

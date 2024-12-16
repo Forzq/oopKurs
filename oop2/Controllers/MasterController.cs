@@ -14,11 +14,18 @@ namespace oop2.Controllers
         {
             _masterRepository = masterRepository;
         }
+        
         [HttpGet]
         public IActionResult GetAllMasters()
         {
             var masters = _masterRepository.GetAllMasters(trackChanges: false);
             return Ok(masters);
+        }
+        [HttpGet("{id:int}")]
+        public IActionResult GetMaster(int id)
+        {
+            var master = _masterRepository.GetMaster(id, trackChanges: false);
+            return Ok(master);
         }
     }
 }

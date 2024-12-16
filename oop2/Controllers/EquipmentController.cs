@@ -14,11 +14,19 @@ namespace oop2.Controllers
         {
             _equipmentRepository = equipmentRepository;
         }
+        
         [HttpGet]
         public IActionResult GetAllEquipments()
         {
             var equipments = _equipmentRepository.GetAllEquipments(trackChanges: false);
             return Ok(equipments);
         }
+        [HttpGet("{id:int}")]
+        public IActionResult GetEquipment(int id) 
+        {
+            var equipment = _equipmentRepository.GetEquipment(id, trackChanges: false);
+            return Ok(equipment);
+        }
+
     }
 }

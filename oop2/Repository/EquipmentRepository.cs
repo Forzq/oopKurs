@@ -1,4 +1,5 @@
 ﻿using oop2.Contracts;
+using oop2.DTO;
 using oop2.Models;
 
 namespace oop2.Repository
@@ -8,16 +9,23 @@ namespace oop2.Repository
         public EquipmentRepository(RepositoryContext context)
         : base(context) { }
 
-        public IEnumerable<Equipment> GetAllEquipments(bool trackChanges)
+        public IEnumerable<EquipmentDto> GetAllEquipments(bool trackChanges)
         {
-            return FindAll(trackChanges)
+            var equipments = FindAll(trackChanges)
                 .OrderBy(g => g.Id)
                 .ToList();
+            var equipmentsDto = equipments.Select(c =>
+            new EquipmentDto(c.Id, c.Description, c.Name, c.OrderId)
+            ).ToList();
+            return equipmentsDto;
         }
-        public Equipment GetEquipment(int id, bool trackChanges)
+        public EquipmentDto GetEquipment(int id, bool trackChanges)
         {
-            return FindByCondition(g => g.Id.Equals(id), trackChanges)
+
+            var equipment = FindByCondition(g => g.Id.Equals(id), trackChanges)
                 .SingleOrDefault();
+            var equipmentDto = new EquipmentDto(equipment.Id, equipment.Description, equipment.Name, equipment.OrderId);
+            return equipmentDto;
         }
     }
 }

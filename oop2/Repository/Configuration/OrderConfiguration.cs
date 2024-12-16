@@ -15,7 +15,6 @@ namespace oop2.Repository.Configuration
                    {
                        Id = 1,
                        ClientId =1,
-                       ServiceId = 1,
                        MasterId = 1,
                        Status = "Выполнен"
                    },
@@ -23,7 +22,6 @@ namespace oop2.Repository.Configuration
                    {
                        Id = 2,
                        ClientId = 2,
-                       ServiceId = 1,
                        MasterId = 2,
                        Status = "Выполнен"
                    },
@@ -31,7 +29,6 @@ namespace oop2.Repository.Configuration
                     {
                         Id = 3,
                         ClientId = 3,
-                        ServiceId = 1,
                         MasterId = 3,
                         Status = "В процессе"
                     },
@@ -39,7 +36,6 @@ namespace oop2.Repository.Configuration
                     {
                         Id = 4,
                         ClientId = 4,
-                        ServiceId = 1,
                         MasterId = 4,
                         Status = "Отменен"
                     },
@@ -47,7 +43,6 @@ namespace oop2.Repository.Configuration
                     {
                         Id = 5,
                         ClientId = 5,
-                        ServiceId = 1,
                         MasterId = 5,
                         Status = "Выполнен"
                     }

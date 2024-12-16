@@ -15,11 +15,18 @@ namespace oop2.Controllers
         {
             _orderRepository = orderRepository;
         }
+        
         [HttpGet]
         public IActionResult GetAllOrders()
         {
             var orders = _orderRepository.GetAllOrders(trackChanges: false);
             return Ok(orders);
+        }
+        [HttpGet("{id:int}")]
+        public IActionResult GetOrder(int id)
+        {
+            var order = _orderRepository.GetOrder(id, trackChanges: false);
+            return Ok(order);
         }
     }
 }

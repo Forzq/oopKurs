@@ -257,9 +257,6 @@ namespace oop2.Migrations
                     b.Property<int>("MasterId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -270,8 +267,6 @@ namespace oop2.Migrations
 
                     b.HasIndex("MasterId");
 
-                    b.HasIndex("ServiceId");
-
                     b.ToTable("Order");
 
                     b.HasData(
@@ -280,7 +275,6 @@ namespace oop2.Migrations
                             Id = 1,
                             ClientId = 1,
                             MasterId = 1,
-                            ServiceId = 1,
                             Status = "Выполнен"
                         },
                         new
@@ -288,7 +282,6 @@ namespace oop2.Migrations
                             Id = 2,
                             ClientId = 2,
                             MasterId = 2,
-                            ServiceId = 1,
                             Status = "Выполнен"
                         },
                         new
@@ -296,7 +289,6 @@ namespace oop2.Migrations
                             Id = 3,
                             ClientId = 3,
                             MasterId = 3,
-                            ServiceId = 1,
                             Status = "В процессе"
                         },
                         new
@@ -304,7 +296,6 @@ namespace oop2.Migrations
                             Id = 4,
                             ClientId = 4,
                             MasterId = 4,
-                            ServiceId = 1,
                             Status = "Отменен"
                         },
                         new
@@ -312,7 +303,6 @@ namespace oop2.Migrations
                             Id = 5,
                             ClientId = 5,
                             MasterId = 5,
-                            ServiceId = 1,
                             Status = "Выполнен"
                         });
                 });
@@ -413,17 +403,9 @@ namespace oop2.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("oop2.Models.Service", "Service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Client");
 
                     b.Navigation("Master");
-
-                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("oop2.Models.Client", b =>

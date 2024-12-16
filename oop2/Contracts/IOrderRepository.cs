@@ -1,10 +1,11 @@
-﻿using oop2.Models;
+﻿using oop2.DTO;
+using oop2.Models;
 
 namespace oop2.Contracts
 {
     public interface IOrderRepository
     {
-        IEnumerable<Order> GetAllOrders(bool trackChanges);
-        Order GetOrder(int id, bool trackChanges);
+        IEnumerable<OrderDto> GetAllOrders(bool trackChanges);
+        OrderDto GetOrder(int id, bool trackChanges);
     }
 }

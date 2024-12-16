@@ -14,11 +14,18 @@ namespace oop2.Controllers
         {
             _serviceRepository = serviceRepository;
         }
+        
         [HttpGet]
         public IActionResult GetAllServices()
         {
             var services = _serviceRepository.GetAllServices(trackChanges: false);
             return Ok(services);
+        }
+        [HttpGet("{id:int}")]
+        public IActionResult GetService(int id)
+        {
+            var service = _serviceRepository.GetService(id, trackChanges: false);
+            return Ok(service);
         }
     }
 

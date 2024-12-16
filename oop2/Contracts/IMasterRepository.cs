@@ -1,10 +1,11 @@
-﻿using oop2.Models;
+﻿using oop2.DTO;
+using oop2.Models;
 
 namespace oop2.Contracts
 {
     public interface IMasterRepository
     {
-        IEnumerable<Master> GetAllMasters(bool trackChanges);
-        Master GetMaster(int id, bool trackChanges);
+        IEnumerable<MasterDto> GetAllMasters(bool trackChanges);
+        MasterDto GetMaster(int id, bool trackChanges);
     }
 }

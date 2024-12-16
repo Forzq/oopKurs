@@ -1,4 +1,5 @@
 ﻿using oop2.Contracts;
+using oop2.DTO;
 using oop2.Models;
 
 namespace oop2.Repository
@@ -8,16 +9,23 @@ namespace oop2.Repository
         public MasterRepository(RepositoryContext context)
             : base(context) { }
 
-        public IEnumerable<Master> GetAllMasters(bool trackChanges)
+        public IEnumerable<MasterDto> GetAllMasters(bool trackChanges)
         {
-            return FindAll(trackChanges)
+            var masters = FindAll(trackChanges)
                 .OrderBy(g => g.Id)
                 .ToList();
+            var mastersDto = masters.Select(c =>
+            new MasterDto(c.Id, c.Name, c.contactInfo, c.specialization)
+            ).ToList();
+            return mastersDto;
         }
-        public Master GetMaster(int id, bool trackChanges)
+        public MasterDto GetMaster(int id, bool trackChanges)
         {
-            return FindByCondition(g => g.Id.Equals(id), trackChanges)
+
+            var master = FindByCondition(g => g.Id.Equals(id), trackChanges)
                 .SingleOrDefault();
+            var masterDto = new MasterDto(master.Id, master.Name, master.contactInfo, master.specialization);
+            return masterDto;
         }
     }
 }
